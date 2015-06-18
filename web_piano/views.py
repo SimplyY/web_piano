@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from django.http import HttpResponse
+from django.shortcuts import render_to_response
 import datetime
+from django.template import Template
 
 def current_datetime(request):
     now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
+    return render_to_response("current_datatime.html", {'current_date': now})

@@ -55,7 +55,7 @@ ROOT_URLCONF = 'web_piano.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["/Users/yuwei/PycharmProjects/web_django/web_piano/templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'web_piano.wsgi.application'
 
