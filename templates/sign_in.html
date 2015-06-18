@@ -2,6 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
@@ -13,14 +15,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-
+    {% load staticfiles %}
     <!-- Custom styles for this template -->
-    <link href="../static/css/starter-template.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
-
+    <link rel="stylesheet" href="{% static "css/starter-template.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/mystyle.css" %}">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    <script type="text/javascript" src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -65,6 +66,7 @@
                 </div>
                 <div class="loginBoxButtons">
                     <input id="remember" type="checkbox" name="remember" />
+                    <label for="remember">记住登录状态</label>
                     <label for="remember">记住登录状态</label>
                     <button class="loginBtn">登录</button>
                 </div>

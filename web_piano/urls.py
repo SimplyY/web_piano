@@ -20,5 +20,5 @@ from web_piano.views import current_datetime
 # 模式包含了一个尖号(^)和一个美元符号($)。这些都是正则表达式符号，并且有特定的含义：
 # 上箭头要求表达式对字符串的头部进行匹配，美元符号则要求表达式对字符串的尾部进行匹配。
 urlpatterns = patterns('',
-    ('hello/$', current_datetime),
+    ('$', current_datetime),
 )

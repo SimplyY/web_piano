@@ -55,7 +55,7 @@ ROOT_URLCONF = 'web_piano.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/Users/yuwei/PycharmProjects/web_django/web_piano/templates",],
+        'DIRS': (os.path.join(BASE_DIR,'templates'),),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,3 +102,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+print(BASE_DIR)
+
