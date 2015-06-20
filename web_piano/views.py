@@ -5,4 +5,4 @@ import datetime
 
 def current_datetime(request):
     now = datetime.datetime.now()
-    return render_to_response("sign_in.html", {'current_date': now})
+    return render_to_response("sign_up.html", {'current_date': now})
