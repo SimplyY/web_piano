@@ -14,11 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import *
-from web_piano.views import current_datetime
-
+from django.contrib import admin
+from piano.sign_in_up_views import *
 
 # 模式包含了一个尖号(^)和一个美元符号($)。这些都是正则表达式符号，并且有特定的含义：
 # 上箭头要求表达式对字符串的头部进行匹配，美元符号则要求表达式对字符串的尾部进行匹配。
 urlpatterns = patterns('',
-    ('$', current_datetime),
+                       (r'^admin/', include(admin.site.urls)),
+                       ('sign_up_page$', sign_up_page),
+                       ('sign_up_form$', sign_up_form),
+                       ('sign_in_page$', sign_in_page),
+                       ('sign_in_form$', sign_in_form)
+
 )
