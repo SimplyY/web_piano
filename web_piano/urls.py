@@ -15,15 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import *
 from django.contrib import admin
-from piano.sign_in_up_views import *
+from piano.views import *
 
 # 模式包含了一个尖号(^)和一个美元符号($)。这些都是正则表达式符号，并且有特定的含义：
 # 上箭头要求表达式对字符串的头部进行匹配，美元符号则要求表达式对字符串的尾部进行匹配。
 urlpatterns = patterns('',
                        (r'^admin/', include(admin.site.urls)),
+                       ('home$', home_page),
                        ('sign_up_page$', sign_up_page),
                        ('sign_up_form$', sign_up_form),
                        ('sign_in_page$', sign_in_page),
-                       ('sign_in_form$', sign_in_form)
+                       ('sign_in_form$', sign_in_form),
+                       ('release_piano_page$', release_piano_page),
+                       ('release_piano_form$', release_piano_form),
+                       ('cancel', cancel)
 
 )
