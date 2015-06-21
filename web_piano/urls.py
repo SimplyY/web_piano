@@ -29,7 +29,8 @@ urlpatterns = patterns('',
                        ('sign_in_form$', sign_in_form),
                        ('release_piano$', release_piano_page),
                        ('release_piano_form$', release_piano_form),
-                       ('exit', views.exit),
-                       ('cancel', cancel),
+                       ('change_password$', change_password),
+                       ('exit$', views.exit),
+                       ('cancel$', cancel),
 
 )
