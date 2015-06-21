@@ -56,13 +56,10 @@ def is_sign_in_correct(request):
     print(request.POST['email'])
     try:
         user = User.objects.get(email=request.POST['email'])
-        print(55, user)
         real_password = user.password
         input_password = request.POST['password']
-        print('input password:', input_password)
         return real_password == input_password
     except User.DoesNotExist:
-        print('false')
         return False
 
 # 发布钢琴页面
@@ -96,11 +93,15 @@ def save_piano(request):
     print(piano.seller)
     piano.save()
 
-def change_password(request):
+# 修改密码
+def change_password_page(request):
+    return render_to_response('change_password.html')
+
+def change_password_form(request):
     fail_change = '更改密码失败,'
     incorrect_password = '密码错误,'
     if request.method == 'POST' and request.session.get('is_sign_in'):
-        user = User.objects.find(email=request.POST['email'])
+        user = User.objects.get(email=request.session.get('email'))
         print(user)
         if request.POST['oldpassword'] == user.password:
             user.password = request.POST['newpassword']
