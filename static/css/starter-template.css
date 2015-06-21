@@ -1,7 +1,8 @@
 body {
-    padding-top: 50px;
+    padding-top: 100px;
+    background-image: url("http://s1.momo.moda/2015/06/21/17d63b1625c816c22647a73e1482372b.jpg");
 }
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
-}
+/*.starter-template {*/
+    /*padding: 40px 15px;*/
+    /*text-align: center;*/
+/*}*/
