@@ -1,3 +1,4 @@
+
 .wrapper {
     margin: 140px auto;
     width: 884px;
@@ -8,7 +9,7 @@
     border: 1px solid #BfD6E1;
     border-radius: 5px;
     color: #444;
-    font: 14px 'Microsoft YaHei', 'Î¢ÈíÑÅºÚ';
+    font: 14px 'Microsoft YaHei', '微软雅黑';
     margin: 0 auto;
     width: 388px
 }
@@ -36,7 +37,7 @@
     border: 1px solid #D2D9dC;
     border-radius: 2px;
     color: #444;
-    font: 12px 'Microsoft YaHei', 'Î¢ÈíÑÅºÚ';
+    font: 12px 'Microsoft YaHei', '微软雅黑';
     padding: 8px 14px;
     margin-bottom: 8px;
     width: 310px;
@@ -75,3 +76,4 @@
 .loginBox a.forgetLink:HOVER {
     text-decoration: underline;
 }
+

@@ -9,11 +9,12 @@
 
     <title>Sign in</title>
 
-     {% load staticfiles %}
+{% load staticfiles %}
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static "css/starter-template.css" %}" >
-    <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+    <link rel="stylesheet" href="{% static "css/starter-template.css" %}">
     <script type="text/javascript" src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
+
+    <script src="../static/js/ie-emulation-modes-warning.js"></script>
 
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -29,12 +30,8 @@
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <li>
-                    <a class="navbar-brand" href="sign_in">登陆</a>
-                </li>
-                <li>
-                    <a class="navbar-brand" href="sign_up">注册</a>
-                </li>
+                <li><a class="navbar-brand" href="sign_in">登陆</a></li>
+                <li><a class="navbar-brand" href="sign_up">注册</a></li>
             </ul>
         </div>
     </div>

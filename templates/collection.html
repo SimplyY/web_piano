@@ -9,9 +9,9 @@
 
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Home</title>
+    <title>Collection</title>
 
-{% load staticfiles %}
+    {% load staticfiles %}
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <script type="text/javascript" src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
@@ -43,50 +43,37 @@
 
 <div><img src="http://s1.momo.moda/2015/06/21/1e056d2b0ebd5c878c550da6ac5d3724.jpg"></div>
 
-<<<<<<< HEAD
+<div class="container">
+    <div><h1>我的收藏</h1></div>
+    <div class="list-group">
+        <a herf="#" class="list-group-item">
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="http://s1.momo.moda/2015/06/20/eecca5b6365d9607ee5a9d336962c534.jpg"
+                         alt="" title="" class="img img-rounded">
+                </div>
 
-
-=======
->>>>>>> origin/llj
-<div class="list">
-    {% for piano in pianos %}
-
-    <div class="container">
-        <div class="list-group">
-            <a herf="#" class="list-group-item">
-                <div class="row">
-                    <div class="col-md-1">
-<<<<<<< HEAD
-                        <img src={{ piano.image_link }} alt="" title="">
-=======
-                        <img src="http://s1.momo.moda/2015/06/20/eecca5b6365d9607ee5a9d336962c534.jpg"
-                             alt="" title="" class="img img-rounded">
->>>>>>> origin/llj
-                    </div>
-
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-offset-2 col-md-9">
-                                <h3>{{ piano.title }}</h3>
-                            </div>
-                            <div class="col-md-offset-2 col-md-2">
-                                <p>品牌:{{ piano.brand }}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p>使用时间:{{ piano.use_time }}</p>
-                            </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-9">
+                            <h3>转卖二手钢琴,便宜出售</h3>
+                        </div>
+                        <div class="col-md-offset-2 col-md-2">
+                            <p>品牌:dshhsa</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p>使用时间:2年</p>
                         </div>
                     </div>
-
-                    <div class="col-md-2">
-                        <h2><span class="label label-info">价格{{ piano.price }}</span></h2>
-                    </div>
                 </div>
-            </a>
-        </div>
-    </div>
-    {% endfor %}
 
+                <div class="col-md-2">
+                    <h2><span class="label label-info">价格6666</span></h2>
+                </div>
+
+            </div>
+        </a>
+    </div>
 </div>
 
 </body>
