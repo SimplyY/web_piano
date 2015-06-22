@@ -2,3 +2,9 @@ body {
     padding-top: 80px;
 }
 
+.img{
+    max-width:329px;
+    _width:expression(this.width>329?"329px":this.width);
+    max-height:329px;
+    _height:expression(this.height>329?"329px":this.height);
+}

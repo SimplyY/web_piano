@@ -1,3 +1,9 @@
 .list{
     padding-top: 40px;
 }
+.img{
+    max-width:100px;
+    _width:expression(this.width>100?"100px":this.width);
+    max-height:100px;
+    _height:expression(this.height>100?"100px":this.height);
+}

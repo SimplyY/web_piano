@@ -8,8 +8,14 @@ from django.http import HttpResponse
 
 return_to_home = "<a href='home'>点击回到首页</a>"
 
+def response_home_page(request):
+    for piano in Piano.objects.all():
+        print(piano.brand)
+    return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in'),
+                                                    'pianos': Piano.objects.all()}))
+
 def home_page(request):
-    return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in')}))
+    return response_home_page(request)
 
 
 # 注册页面
@@ -29,7 +35,7 @@ def sign_up_form(request):
         user.email = request.POST['email']
         user.password = request.POST['password']
         user.save()
-        return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in')}))
+        return response_home_page(request)
 
 def is_legal_sign_up(request):
     all_users = User.objects.all()
@@ -48,7 +54,7 @@ def sign_in_form(request):
         request.session['is_sign_in'] = True  # session记录登录状态
         request.session['email'] = request.POST['email']
         print(request.session.get('is_sign_in'))
-        return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in')}))
+        return response_home_page(request)
     else:
         return HttpResponse('登录信息错误' + return_to_home)
 
@@ -74,7 +80,7 @@ def release_piano_form(request):
 
     if request.method == 'POST' and request.session.get('is_sign_in'):
         save_piano(request)
-        return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in')}))
+        return response_home_page(request)
     else:
         print("fail to release")
         return HttpResponse("发布信息失败" + return_to_home)
@@ -93,6 +99,10 @@ def save_piano(request):
     print(piano.seller)
     piano.save()
 
+
+
+
+
 # 修改密码
 def change_password_page(request):
     return render_to_response('change_password.html')
@@ -106,7 +116,7 @@ def change_password_form(request):
         if request.POST['oldpassword'] == user.password:
             user.password = request.POST['newpassword']
             user.save()
-            return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in')}))
+            return response_home_page(request)
         else:
             return HttpResponse(incorrect_password + return_to_home)
     else:
@@ -129,7 +139,7 @@ def exit(request):
         return HttpResponse("退出成功," + return_to_home)
     else:
         return HttpResponse("退出失败," + return_to_home)
-
+# 将session里关于sign_in的内容置空
 def delete_sign_in_session(request):
     request.session['is_sign_in'] = False
     request.session['email'] = None

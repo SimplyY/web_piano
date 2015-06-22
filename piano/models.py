@@ -1,6 +1,6 @@
 from django.db import models
-# 用户信息表：用户编号，用户名，邮箱，密码。
 
+# 用户信息表：用户编号，用户名，邮箱，密码。
 class User(models.Model):
     name = models.CharField(max_length=20, unique=True)
     email = models.EmailField(unique=True)
@@ -17,7 +17,7 @@ class Piano(models.Model):
     brand = models.CharField(max_length=20)
     price = models.CharField(max_length=10)
     use_time = models.CharField(max_length=20)
-    image_link = models.CharField(max_length=20)
+    image_link = models.CharField(max_length=200)
     seller = models.ForeignKey(User)
 
     def __str__(self):
@@ -32,3 +32,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return "评论id: %s ，评论人：%s" + (self.id, self.content)
+
+# 收藏表：收藏id，收藏人，收藏的钢琴
+class Collection(models.Model):
+    user = models.ForeignKey(User)
+    piano = models.ForeignKey(Piano)
