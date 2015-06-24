@@ -7,4 +7,4 @@ from piano.models import *
 admin.site.register(User)
 admin.site.register(Piano)
 admin.site.register(Comment)
-
+admin.site.register(Collection)

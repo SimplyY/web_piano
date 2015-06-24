@@ -32,10 +32,14 @@
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <li><a class="navbar-brand" href="collections">我的收藏</a></li>
-                <li><a class="navbar-brand" href="change_password">修改密码</a></li>
-                <li><a class="navbar-brand" href="sign_in">登陆</a></li>
-                <li><a class="navbar-brand" href="sign_up">注册</a></li>
+                {% if is_sign_in %}
+-                    <li><a class="navbar-brand" href="change_password">修改密码</a></li>
+-                    <li><a class="navbar-brand" href="cancel">注销账号</a></li>
+-                    <li><a class="navbar-brand" href="exit">退出</a></li>
+-                {% else %}
+-                    <li><a class="navbar-brand" href="sign_in">登陆</a></li>
+-                    <li><a class="navbar-brand" href="sign_up">注册</a></li>
+-                {% endif %}
             </ul>
         </div>
     </div>
@@ -43,25 +47,17 @@
 
 <div><img src="http://s1.momo.moda/2015/06/21/1e056d2b0ebd5c878c550da6ac5d3724.jpg"></div>
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/llj
 <div class="list">
     {% for piano in pianos %}
 
     <div class="container">
         <div class="list-group">
-            <a herf="#" class="list-group-item">
+            <a href="piano{{ piano.id }}" class="list-group-item">
                 <div class="row">
                     <div class="col-md-1">
-<<<<<<< HEAD
-                        <img src={{ piano.image_link }} alt="" title="">
-=======
-                        <img src="http://s1.momo.moda/2015/06/20/eecca5b6365d9607ee5a9d336962c534.jpg"
-                             alt="" title="" class="img img-rounded">
->>>>>>> origin/llj
+                        <img src={{ piano.image_link }}  alt="" title="" class="img img-rounded">
                     </div>
 
                     <div class="col-md-9">

@@ -31,10 +31,14 @@
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <li><a class="navbar-brand" href="collections">我的收藏</a></li>
-                <li><a class="navbar-brand" href="change_password">修改密码</a></li>
-                <li><a class="navbar-brand" href="sign_in">登陆</a></li>
-                <li><a class="navbar-brand" href="sign_up">注册</a></li>
+                {% if is_sign_in %}
+-                    <li><a class="navbar-brand" href="change_password">修改密码</a></li>
+-                    <li><a class="navbar-brand" href="cancel">注销账号</a></li>
+-                    <li><a class="navbar-brand" href="exit">退出</a></li>
+-                {% else %}
+-                    <li><a class="navbar-brand" href="sign_in">登陆</a></li>
+-                    <li><a class="navbar-brand" href="sign_up">注册</a></li>
+-                {% endif %}
             </ul>
         </div>
     </div>
@@ -46,31 +50,31 @@
 
             <div class="row">
                 <div class="col-md-5">
-                    <img src="http://s1.momo.moda/2015/06/21/afd4836712c5e77550897e25711e1d96.jpg" class="img img-rounded">
+                    <img src={{ piano.image_link }} class="img img-rounded">
                 </div>
 
                 <div class="col-md-7">
-                    <h2>转卖二手钢琴,便宜出售</h2>
+                    <h2>{{ piano.title }}</h2>
                 </div>
                 <div class="col-md-7">
                     <div class="col-md-3"><h4>品牌:</h4></div>
-                    <div><h4>nxsdnsnd</h4></div>
+                    <div><h4>{{ piano.brand }}</h4></div>
                 </div>
                 <div class="col-md-7">
                     <div class="col-md-3"><h4>使用时间:</h4></div>
-                    <div><h4>1年</h4></div>
+                    <div><h4>{{ piano.use_time }}</h4></div>
                 </div>
                 <div class="col-md-7">
                     <div class="col-md-3"><h4>价格:</h4></div>
-                    <div><h4>6666</h4></div>
+                    <div><h4>{{ piano.price }}</h4></div>
                 </div>
                 <div class="col-md-7">
                     <div class="col-md-3"><h4>卖家:</h4></div>
-                    <div><h4>fish tail</h4></div>
+                    <div><h4>{{ piano.seller.name }}</h4></div>
                 </div>
                 <div class="col-md-7">
                     <div class="col-md-3"><h4>邮箱:</h4></div>
-                    <div><h4>fish tail@changqi.com</h4></div>
+                    <div><h4>{{ piano.seller.email }}</h4></div>
                 </div>
                 <div>
                     <button class="btn btn-info col-lg-offset-1 col-md-2" type="button">点击收藏</button>
@@ -80,26 +84,27 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">简介：</div>
-                <div class="panel-body">简介内容。。。。</div>
+                <div class="panel-body">{{ piano.info }}</div>
             </div>
 
-            <div>
+            <form action="comment_form" method="POST">
                 <h4>评论：</h4>
                 <textarea required="required" name="comment" rows="3" cols="155"></textarea>
-                <button class="btn btn-info col-md-offset-11 col-md-1" type="button">评论</button>
-            </div>
+                <button class="btn btn-info col-md-offset-11 col-md-1">评论</button>
+            </form>
             <br/><br/>
 
+            {{% for comment in comments %}}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-2">用户名</div>
-                        <div class="col-md-3">邮箱：</div>
+                        <div class="col-md-2">用户名：{{ comment.user.name }}</div>
+                        <div class="col-md-3">邮箱：{{ comment.user.email }}</div>
                     </div>
                 </div>
-                <div class="panel-body">评论内容。。。。</div>
+                <div class="panel-body">评论内容：{{ comment.content }}</div>
             </div>
-
+            {{% endfor %}}
         </div>
     </div>
 

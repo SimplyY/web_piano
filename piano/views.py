@@ -9,10 +9,10 @@ from django.http import HttpResponse
 return_to_home = "<a href='home'>点击回到首页</a>"
 
 def response_home_page(request):
-    for piano in Piano.objects.all():
-        print(piano.brand)
     return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in'),
                                                     'pianos': Piano.objects.all()}))
+def response_piano_page(piano):
+    return render_to_response('piano.html', Context({'piano': piano, 'comments': Comment.objects.all()}))
 
 def home_page(request):
     return response_home_page(request)
@@ -99,8 +99,33 @@ def save_piano(request):
     print(piano.seller)
     piano.save()
 
+# 单个钢琴页面
+def piano_page(request):
+    url = request.get_full_path()
+    for piano in Piano.objects.all():
+        print(str(piano.id))
+        print(url[6::])
+        if str(piano.id) == url[6::]:
+            request.session['current_piano_id'] = piano.id
+            return response_piano_page(piano)
+    return HttpResponse('点击未找到相应钢琴')
 
-
+# 处理单个钢琴页面的评论表单
+def comment_form(request):
+    if request.session.get('is_sign_in'):
+        if request.method == 'POST':
+            user = User.objects.get(email=request.session.get('email'))
+            comment_content = request.POST['comment']
+            piano_id = request.session.get('current_piano_id')
+            piano = Piano.objects.get(id=piano_id)
+            comment = Comment()
+            comment.content = comment_content
+            comment.piano = piano
+            comment.user = user
+            comment.save()
+            return HttpResponse('评论成功，' + return_to_home)
+    else:
+        return HttpResponse('未登录无法评论，请先登录。' + return_to_home)
 
 
 # 修改密码

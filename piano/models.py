@@ -31,7 +31,7 @@ class Comment(models.Model):
     piano = models.ForeignKey(Piano)
 
     def __str__(self):
-        return "评论id: %s ，评论人：%s" + (self.id, self.content)
+        return "评论id: %d ，评论人：%s" % (self.id, self.content)
 
 # 收藏表：收藏id，收藏人，收藏的钢琴
 class Collection(models.Model):

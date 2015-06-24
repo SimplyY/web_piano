@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 """web_piano URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -29,6 +32,8 @@ urlpatterns = patterns('',
                        ('sign_in_form$', sign_in_form),
                        ('release_piano$', release_piano_page),
                        ('release_piano_form$', release_piano_form),
+                       ('^piano', piano_page),
+                       ('comment_form$', comment_form),
                        ('change_password$', change_password_page),
                        ('change_password_form$', change_password_form),
                        ('exit$', views.exit),
