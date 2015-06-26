@@ -27,6 +27,9 @@
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="home">首页</a></li>
                 <li><a class="navbar-brand" href="release_piano">发布信息</a></li>
+                {% if is_sign_in %}
+                <li><a class="navbar-brand" href="collections_page">我的收藏</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="navbar-right">
@@ -50,7 +53,7 @@
 
             <div class="row">
                 <div class="col-md-5">
-                    <img src={{ piano.image_link }} class="img img-rounded">
+                    <img class="img img-rounded" src={{ piano.image_link }} >
                 </div>
 
                 <div class="col-md-7">
@@ -76,9 +79,9 @@
                     <div class="col-md-3"><h4>邮箱:</h4></div>
                     <div><h4>{{ piano.seller.email }}</h4></div>
                 </div>
-                <div>
-                    <button class="btn btn-info col-lg-offset-1 col-md-2" type="button">点击收藏</button>
-                </div>
+                <form action="collection_form" method="POST">
+                    <button  class="btn btn-info col-lg-offset-1 col-md-2" >点击收藏</button>
+                </form>
             </div>
             <br/>
 
@@ -94,7 +97,7 @@
             </form>
             <br/><br/>
 
-            {{% for comment in comments %}}
+            {% for comment in comments %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -104,7 +107,7 @@
                 </div>
                 <div class="panel-body">评论内容：{{ comment.content }}</div>
             </div>
-            {{% endfor %}}
+            {% endfor %}
         </div>
     </div>
 

@@ -18,6 +18,9 @@ def home_page(request):
     return response_home_page(request)
 
 
+def get_user(request):
+    return User.objects.get(email=request.session.get('email'))
+
 # 注册页面
 def sign_up_page(request):
     return render_to_response("sign_up.html")
@@ -35,6 +38,8 @@ def sign_up_form(request):
         user.email = request.POST['email']
         user.password = request.POST['password']
         user.save()
+        request.session['is_sign_in'] = True  # session记录登录状态
+        request.session['email'] = request.POST['email']
         return response_home_page(request)
 
 def is_legal_sign_up(request):
@@ -114,7 +119,7 @@ def piano_page(request):
 def comment_form(request):
     if request.session.get('is_sign_in'):
         if request.method == 'POST':
-            user = User.objects.get(email=request.session.get('email'))
+            user = get_user(request)
             comment_content = request.POST['comment']
             piano_id = request.session.get('current_piano_id')
             piano = Piano.objects.get(id=piano_id)
@@ -127,6 +132,36 @@ def comment_form(request):
     else:
         return HttpResponse('未登录无法评论，请先登录。' + return_to_home)
 
+# 点击收藏
+def collect(request):
+    if request.session.get('is_sign_in'):
+        if request.method == 'POST':
+            piano_id = request.session.get('current_piano_id')
+            if not is_piano_id_in_collections(piano_id):
+                return HttpResponse('此钢琴已收藏，' + return_to_home)
+            piano = Piano.objects.get(id=piano_id)
+            user = get_user(request)
+            print(piano)
+            print(user)
+            collection = Collection()
+            collection.piano = piano
+            collection.user = user
+            collection.save()
+            return HttpResponse('收藏成功，' + return_to_home)
+    else:
+        return HttpResponse('请先登录，' + return_to_home)
+def is_piano_id_in_collections(piano_id):
+    for collection in Collection.objects.all():
+        if collection.piano.id == piano_id:
+            return False
+    return True
+
+# 收藏页面
+def collections_page(request):
+    print(Collection.objects.filter(user=get_user(request)))
+    return render_to_response('collection.html',
+                              Context({'collections': Collection.objects.filter(user=get_user(request)),
+                                       'is_sign_in': request.session.get('is_sign_in')}))
 
 # 修改密码
 def change_password_page(request):

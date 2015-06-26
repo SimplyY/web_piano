@@ -28,9 +28,13 @@
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="home">首页</a></li>
                 <li><a class="navbar-brand" href="release_piano">发布信息</a></li>
+                {% if is_sign_in %}
+                <li><a class="navbar-brand" href="collections_page">我的收藏</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="navbar-right">
+            <ul class="nav navbar-nav">
                 {% if is_sign_in %}
 -                    <li><a class="navbar-brand" href="change_password">修改密码</a></li>
 -                    <li><a class="navbar-brand" href="cancel">注销账号</a></li>
@@ -39,6 +43,7 @@
 -                    <li><a class="navbar-brand" href="sign_in">登陆</a></li>
 -                    <li><a class="navbar-brand" href="sign_up">注册</a></li>
 -                {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
@@ -47,35 +52,38 @@
 
 <div class="container">
     <div><h1>我的收藏</h1></div>
-    <div class="list-group">
-        <a herf="#" class="list-group-item">
-            <div class="row">
-                <div class="col-md-1">
-                    <img src="http://s1.momo.moda/2015/06/20/eecca5b6365d9607ee5a9d336962c534.jpg"
-                         alt="" title="" class="img img-rounded">
-                </div>
 
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-9">
-                            <h3>转卖二手钢琴,便宜出售</h3>
-                        </div>
-                        <div class="col-md-offset-2 col-md-2">
-                            <p>品牌:dshhsa</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p>使用时间:2年</p>
+    <div class="list-group">
+        {% for collection in collections %}
+
+            <a herf="#" class="list-group-item">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img alt="" title="" class="img img-rounded" src={{ collection.piano.image_link }}>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-9">
+                                <h3>{{ collection.piano.title }}</h3>
+                            </div>
+                            <div class="col-md-offset-2 col-md-2">
+                                <p>品牌：{{ collection.piano.brand }}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>使用时间:{{ collection.piano.use_time }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-2">
-                    <h2><span class="label label-info">价格6666</span></h2>
-                </div>
+                    <div class="col-md-2">
+                        <h2><span class="label label-info">价格:{{ collection.piano.price }}</span></h2>
+                    </div>
 
+                </div>
+            </a>
             </div>
-        </a>
-    </div>
+        {% endfor %}
 </div>
 
 </body>
