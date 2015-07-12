@@ -12,7 +12,7 @@ def response_home_page(request):
     return render_to_response('home.html', Context({'is_sign_in': request.session.get('is_sign_in'),
                                                     'pianos': Piano.objects.all()}))
 def response_piano_page(piano):
-    return render_to_response('piano.html', Context({'piano': piano, 'comments': Comment.objects.all()}))
+    return render_to_response('piano.html', Context({'piano': piano, 'comments': Comment.objects.filter(piano=piano)}))
 
 def home_page(request):
     return response_home_page(request)
@@ -156,7 +156,7 @@ def is_piano_id_in_collections(piano_id):
             return False
     return True
 
-# 收藏页面
+# 收藏页面``
 def collections_page(request):
     print(Collection.objects.filter(user=get_user(request)))
     return render_to_response('collection.html',
